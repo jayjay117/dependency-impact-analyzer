@@ -1,0 +1,12 @@
+[build]
+  command = "npm run build"
+  publish = "frontend/dist"
+
+[functions]
+  directory = "netlify/functions"
+
+# Route all /api/* calls to the serverless Express function (named "api").
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200

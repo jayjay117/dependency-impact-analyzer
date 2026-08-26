@@ -2,7 +2,18 @@ import dotenv from 'dotenv';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+// Resolve __dirname in both ESM and CJS contexts. When bundled to CJS (e.g. for a
+// Netlify Function) `import.meta.url` is unavailable, so fall back to the cwd; in
+// that environment credentials come from injected environment variables anyway.
+function resolveDir() {
+  try {
+    return path.dirname(fileURLToPath(import.meta.url));
+  } catch {
+    return process.cwd();
+  }
+}
+
+const __dirname = resolveDir();
 
 // Load backend/.env explicitly so the app works regardless of the working directory
 // (local `node backend/src/server.js` or a host that injects env vars directly).

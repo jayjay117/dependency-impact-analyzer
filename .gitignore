@@ -9,3 +9,10 @@ server.log
 server.err
 be.log
 fe.log
+
+# Netlify build artifacts / local link state
+netlify/functions/api.cjs
+.netlify/
+fn-bundle.*
+test-fn.mjs
+test-bundle.mjs

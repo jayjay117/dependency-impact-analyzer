@@ -17,6 +17,7 @@
     "cytoscape": "^3.30.2",
     "gsap": "^3.12.5",
     "lucide-react": "^0.460.0",
+    "project-dependency-impact-analyzer": "file:..",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "tailwind-merge": "^2.5.4"
