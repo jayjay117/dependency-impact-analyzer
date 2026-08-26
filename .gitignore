@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.env
+backend/.env
+*.log
+*.err
+.DS_Store
+server.log
+server.err
+be.log
+fe.log
