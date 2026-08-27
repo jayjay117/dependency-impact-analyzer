@@ -169,25 +169,32 @@ Express API runs as a **Netlify Function**. The function is produced by bundling
 
 ---
 
-## 8. Screenshots &amp; demo
+## 8. Screenshots & demo
 
-The app is fully interactive; the snapshots below show the main views.
+The application is fully interactive; the snapshots below illustrate its main views.
 
 **Landing / empty state**
 
 ![Landing](docs/Screenshot-Landing_page.png)
 
-**Browse dependencies** — search `core-utils`, pick `@northwind/core-utils`, and the dependency
-graph (left) plus the "Direct dependencies" panel (right) appear.
+The home screen prompts for a search and highlights the most depended-on libraries and most central
+services, derived directly from the graph.
+
+**Browse dependencies**
 
 ![Browse](docs/screenshot-browse.png)
 
-**Search autocomplete** — typing a few characters surfaces matching projects, libraries and services.
+Selecting a node such as `@northwind/core-utils` draws its complete transitive dependency tree in the
+graph, with the immediate dependencies enumerated in the side panel.
+
+**Search autocomplete**
 
 ![Search](docs/screenshot-search.png)
 
-A short demo recording walks through search → dependency tree → Impact analysis (blast radius grouped
-by team): _&lt;add your recording link here&gt;_.
+The search field offers live autocomplete across projects, libraries and services.
+
+A short demo recording shows the end-to-end flow — search, dependency tree, then impact analysis
+grouped by team: https://…
 
 ---
 
