@@ -102,7 +102,8 @@ dep-analyzer/
 - **Frontend:** React + Vite + TypeScript, styled with **shadcn/ui + Tailwind CSS v4**, graph
   visualised with **Cytoscape**, entrance animations with **GSAP** (`useGSAP`, auto-cleaned,
   respects `prefers-reduced-motion`).
-- **Single deploy:** the backend serves the built frontend, so one hosting service is enough.
+ - **Single deploy:** the React UI is served as static assets and the Express API runs as a **Netlify
+   Function** (see *Hosting* below) — so one Netlify site hosts both.
 
 ---
 
@@ -148,16 +149,21 @@ All queries use driver parameters (`$id`, `$term`) — **no string-concatenated 
 
 ## 7. Hosting (free tier)
 
-A single service is enough because the backend serves the built frontend.
+Everything runs on a **single Netlify site**: the React UI is served as static assets and the
+Express API runs as a **Netlify Function**. The function is produced by bundling
+`netlify/functions-src/api.js` to CommonJS with esbuild during the build (CJS is required because
+`serverless-http` does `require('http')`, which fails when bundled as ESM).
 
-**Render (recommended):**
-- Build command: `npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend`
-- Start command: `node backend/src/server.js`
-- Add the three `COGNODB_*` environment variables in the dashboard.
-- The running instance URL is your hosted demo link.
-
-**Alternative:** build the frontend and deploy `frontend/dist` to Netlify/Vercel, deploy the
-backend to Render/Railway, and point the frontend's API base at the backend URL.
+**Netlify (this repo is deployed here):**
+- Build command: `npm run build`
+  (installs backend + frontend deps, builds the UI, then bundles the function to
+  `netlify/functions/api.cjs`)
+- Publish directory: `frontend/dist`
+- Functions directory: `netlify/functions`
+- Add the three `COGNODB_*` environment variables (`COGNODB_URI`, `COGNODB_USER`,
+  `COGNODB_PASSWORD`) in Site settings → Environment variables, scope `all`.
+- `netlify.toml` contains the `/api/*` → `/.netlify/functions/api/:splat` redirect.
+- Live demo: **https://dependency-impact-analyzer.netlify.app**
 
 > Keep your CognoDB instance running until you hear back — the reviewer may query it live.
 
@@ -167,8 +173,11 @@ backend to Render/Railway, and point the frontend's API base at the backend URL.
 
 Add screenshots of the two main views here (the app is fully interactive; these are just for the README):
 
-- `docs/screenshot-browse.png` — Browse dependencies view (dependency graph + direct deps panel)
-- `docs/screenshot-impact.png` — Impact analysis view (blast radius grouped by team)
+- `docs/screenshot-browse.png` — **Browse dependencies** view: search `core-utils`, pick
+  `@northwind/core-utils`, show the dependency graph on the left + the "Direct dependencies" panel on the right.
+- `docs/screenshot-impact.png` — **Impact analysis** view: with the same `@northwind/core-utils` node
+  selected, show its blast radius (31 downstream components) grouped by owning team on the right.
+- `docs/screenshot-search.png` *(optional)* — the search autocomplete dropdown (e.g. typing `auth`).
 
 Record a short (~1–2 min) screen recording walking through: search → pick a library → see its
 dependency tree → switch to Impact → see the affected teams. Attach the link in your submission.
