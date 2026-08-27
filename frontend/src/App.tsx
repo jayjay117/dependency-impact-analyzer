@@ -171,7 +171,7 @@ export default function App() {
     <div ref={appRef} className="min-h-screen bg-background text-foreground">
       <div className="mx-auto max-w-6xl px-4 py-6 sm:px-6">
         {/* Header */}
-        <header className="gsap-mount mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <header className="gsap-mount relative z-50 mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div className="flex items-center gap-3">
             <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow">
               <Network className="h-5 w-5" />
@@ -195,7 +195,7 @@ export default function App() {
               onFocus={() => results.length && setShowResults(true)}
             />
             {showResults && results.length > 0 && (
-              <div className="absolute z-30 mt-2 w-full overflow-hidden rounded-lg border bg-card shadow-lg">
+              <div className="absolute z-50 mt-2 w-full overflow-hidden rounded-lg border bg-card shadow-lg">
                 {results.map((r) => (
                   <button
                     key={r.id}
