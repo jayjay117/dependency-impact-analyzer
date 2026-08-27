@@ -351,7 +351,14 @@ export default function App() {
                   </>
                 ) : (
                   <>
-                    {impactRows && (
+                    {impactRows && impactRows.length === 0 && (
+                      <p className="rounded-lg border border-dashed px-3 py-3 text-sm text-muted-foreground">
+                        Nothing depends on <span className="font-medium text-foreground">{selected.name}</span> — it's a
+                        terminal component, so its blast radius is empty. Try a foundational library like{' '}
+                        <span className="font-medium">@northwind/core-utils</span> to see downstream impact.
+                      </p>
+                    )}
+                    {impactRows && impactRows.length > 0 && (
                       <p className="text-sm text-muted-foreground">
                         {impactRows.length} component(s) depend on, consume or call{' '}
                         <span className="font-medium text-foreground">{selected.name}</span> — directly or transitively.
