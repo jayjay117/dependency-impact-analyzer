@@ -194,7 +194,7 @@ graph, with the immediate dependencies enumerated in the side panel.
 The search field offers live autocomplete across projects, libraries and services.
 
 A short demo recording shows the end-to-end flow — search, dependency tree, then impact analysis
-grouped by team: https://…
+grouped by team: https://drive.google.com/file/d/16FlSP1Se65QPMOEXAJdQD6_tuKB7HeEk/view?usp=drive_link
 
 ---
 
