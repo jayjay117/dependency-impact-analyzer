@@ -169,18 +169,25 @@ Express API runs as a **Netlify Function**. The function is produced by bundling
 
 ---
 
-## 8. Screenshots &amp; demo recording
+## 8. Screenshots &amp; demo
 
-Add screenshots of the two main views here (the app is fully interactive; these are just for the README):
+The app is fully interactive; the snapshots below show the main views.
 
-- `docs/screenshot-browse.png` — **Browse dependencies** view: search `core-utils`, pick
-  `@northwind/core-utils`, show the dependency graph on the left + the "Direct dependencies" panel on the right.
-- `docs/screenshot-impact.png` — **Impact analysis** view: with the same `@northwind/core-utils` node
-  selected, show its blast radius (31 downstream components) grouped by owning team on the right.
-- `docs/screenshot-search.png` *(optional)* — the search autocomplete dropdown (e.g. typing `auth`).
+**Landing / empty state**
 
-Record a short (~1–2 min) screen recording walking through: search → pick a library → see its
-dependency tree → switch to Impact → see the affected teams. Attach the link in your submission.
+![Landing](docs/Screenshot-Landing_page.png)
+
+**Browse dependencies** — search `core-utils`, pick `@northwind/core-utils`, and the dependency
+graph (left) plus the "Direct dependencies" panel (right) appear.
+
+![Browse](docs/screenshot-browse.png)
+
+**Search autocomplete** — typing a few characters surfaces matching projects, libraries and services.
+
+![Search](docs/screenshot-search.png)
+
+A short demo recording walks through search → dependency tree → Impact analysis (blast radius grouped
+by team): _&lt;add your recording link here&gt;_.
 
 ---
 
